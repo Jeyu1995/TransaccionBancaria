@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">	
+			
+			
+			<h:form id="formDialog">
+				<p:messages id="msg" />
+				<p:growl id="men"/>
+					<p:panel id="panelCuenta" header="Cuenta">							
+						<h:panelGrid columns="2" id="panelGrid" >
+												 	<h:outputText id="msgCodigocuenta" value="Codigocuenta"/>
+						 	<p:inputText id="txtCodigocuenta" binding="#{cuentaView.txtCodigocuenta}">
+						 		<p:ajax update="panelCuenta,msg,panelBotones" listener="#{cuentaView.listener_txtId}"/>
+						 	</p:inputText>	
+																		
+													<h:outputText id="msgBanco" value=" Banco"/>
+							<p:inputText id="txtBanco" disabled="true" binding="#{cuentaView.txtBanco}"/>
+													<h:outputText id="msgSaldo" value=" Saldo"/>
+							<p:inputText id="txtSaldo" disabled="true" binding="#{cuentaView.txtSaldo}"/>
+													<h:outputText id="msgTipocuenta" value=" Tipocuenta"/>
+							<p:inputText id="txtTipocuenta" disabled="true" binding="#{cuentaView.txtTipocuenta}"/>
+													<h:outputText id="msgDni_Usuario" value=" Dni_Usuario"/>
+							<p:inputText id="txtDni_Usuario" disabled="true" binding="#{cuentaView.txtDni_Usuario}"/>
+												
+										   </h:panelGrid>
+				</p:panel>
+	   			<p:panel id="panelBotones">
+					<div align="center">					
+						<p:commandButton id="btnSave" binding="#{cuentaView.btnSave}" disabled="true" value="Save" action="#{cuentaView.action_save()}" update="panelCuenta, msg, panelBotones, men" />
+						<p:commandButton id="btnDelete" binding="#{cuentaView.btnDelete}" disabled="true" value="Delete" action="#{cuentaView.action_delete_master()}" onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}" update="panelCuenta, msg, panelBotones, men" />
+						<p:commandButton id="btnClear" value="Clear" action="#{cuentaView.action_clear()}" update="panelCuenta, msg, panelBotones, men" />
+					</div>
+				</p:panel>			
+			</h:form>
+			
+  </ui:define>
+</ui:composition>

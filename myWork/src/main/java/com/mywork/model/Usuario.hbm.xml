@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-oct-2017 10:45:58 by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.mywork.model.Usuario" table="usuario" catalog="bdtransaccionbancaria" optimistic-lock="version">
+        <id name="dni" type="java.lang.String">
+            <column name="DNI" length="50" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="apellido" type="java.lang.String">
+            <column name="apellido" length="50" not-null="true" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" length="50" not-null="true" />
+        </property>
+        <property name="telefono" type="java.lang.String">
+            <column name="telefono" length="50" not-null="true" />
+        </property>
+        <set name="cuentas" table="cuenta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dni_usuario" length="50" not-null="true" />
+            </key>
+            <one-to-many class="com.mywork.model.Cuenta" />
+        </set>
+    </class>
+</hibernate-mapping>

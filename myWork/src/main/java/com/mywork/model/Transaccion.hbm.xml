@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-oct-2017 10:45:58 by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="com.mywork.model.Transaccion" table="transaccion" catalog="bdtransaccionbancaria" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cuenta" class="com.mywork.model.Cuenta" fetch="select">
+            <column name="numerocuenta" length="50" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="java.util.Date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="observacion" type="java.lang.String">
+            <column name="observacion" length="50" not-null="true" />
+        </property>
+        <property name="valor" type="java.lang.Integer">
+            <column name="valor" not-null="true" />
+        </property>
+        <property name="tipotransaccion" type="java.lang.Integer">
+            <column name="tipotransaccion" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

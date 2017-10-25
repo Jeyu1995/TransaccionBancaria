@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">	
+			
+			
+			<h:form id="formDialog">
+				<p:messages id="msg" />
+				<p:growl id="men"/>
+					<p:panel id="panelTransaccion" header="Transaccion">							
+						<h:panelGrid columns="2" id="panelGrid" >
+												 	<h:outputText id="msgId" value="Id"/>
+						 	<p:inputText id="txtId" binding="#{transaccionView.txtId}">
+						 		<p:ajax update="panelTransaccion,msg,panelBotones" listener="#{transaccionView.listener_txtId}"/>
+						 	</p:inputText>	
+																		
+													<h:outputText id="msgObservacion" value=" Observacion"/>
+							<p:inputText id="txtObservacion" disabled="true" binding="#{transaccionView.txtObservacion}"/>
+													<h:outputText id="msgTipotransaccion" value=" Tipotransaccion"/>
+							<p:inputText id="txtTipotransaccion" disabled="true" binding="#{transaccionView.txtTipotransaccion}"/>
+													<h:outputText id="msgValor" value=" Valor"/>
+							<p:inputText id="txtValor" disabled="true" binding="#{transaccionView.txtValor}"/>
+													<h:outputText id="msgCodigocuenta_Cuenta" value=" Codigocuenta_Cuenta"/>
+							<p:inputText id="txtCodigocuenta_Cuenta" disabled="true" binding="#{transaccionView.txtCodigocuenta_Cuenta}"/>
+												
+																				<h:outputText id="msgFecha" value=" Fecha"/>
+														<p:calendar showOn="button" navigator="true" locale="en" 
+							binding="#{transaccionView.txtFecha}" >
+								<p:ajax event="dateSelect" listener="#{transaccionView.listener_txtFecha}"  />
+							</p:calendar>
+																	   </h:panelGrid>
+				</p:panel>
+	   			<p:panel id="panelBotones">
+					<div align="center">					
+						<p:commandButton id="btnSave" binding="#{transaccionView.btnSave}" disabled="true" value="Save" action="#{transaccionView.action_save()}" update="panelTransaccion, msg, panelBotones, men" />
+						<p:commandButton id="btnDelete" binding="#{transaccionView.btnDelete}" disabled="true" value="Delete" action="#{transaccionView.action_delete_master()}" onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}" update="panelTransaccion, msg, panelBotones, men" />
+						<p:commandButton id="btnClear" value="Clear" action="#{transaccionView.action_clear()}" update="panelTransaccion, msg, panelBotones, men" />
+					</div>
+				</p:panel>			
+			</h:form>
+			
+  </ui:define>
+</ui:composition>

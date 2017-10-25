@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+		 
+	<ui:define name="content">	
+			
+			
+			<h:form id="formDialog">
+				<p:messages id="msg" />
+				<p:growl id="men"/>
+					<p:panel id="panelUsuario" header="Usuario">							
+						<h:panelGrid columns="2" id="panelGrid" >
+												 	<h:outputText id="msgDni" value="Dni"/>
+						 	<p:inputText id="txtDni" binding="#{usuarioView.txtDni}">
+						 		<p:ajax update="panelUsuario,msg,panelBotones" listener="#{usuarioView.listener_txtId}"/>
+						 	</p:inputText>	
+																		
+													<h:outputText id="msgApellido" value=" Apellido"/>
+							<p:inputText id="txtApellido" disabled="true" binding="#{usuarioView.txtApellido}"/>
+													<h:outputText id="msgEmail" value=" Email"/>
+							<p:inputText id="txtEmail" disabled="true" binding="#{usuarioView.txtEmail}"/>
+													<h:outputText id="msgNombre" value=" Nombre"/>
+							<p:inputText id="txtNombre" disabled="true" binding="#{usuarioView.txtNombre}"/>
+													<h:outputText id="msgTelefono" value=" Telefono"/>
+							<p:inputText id="txtTelefono" disabled="true" binding="#{usuarioView.txtTelefono}"/>
+												
+										   </h:panelGrid>
+				</p:panel>
+	   			<p:panel id="panelBotones">
+					<div align="center">					
+						<p:commandButton id="btnSave" binding="#{usuarioView.btnSave}" disabled="true" value="Save" action="#{usuarioView.action_save()}" update="panelUsuario, msg, panelBotones, men" />
+						<p:commandButton id="btnDelete" binding="#{usuarioView.btnDelete}" disabled="true" value="Delete" action="#{usuarioView.action_delete_master()}" onclick="if(!confirm('Do you really want to delete this Entry?')){return false;}" update="panelUsuario, msg, panelBotones, men" />
+						<p:commandButton id="btnClear" value="Clear" action="#{usuarioView.action_clear()}" update="panelUsuario, msg, panelBotones, men" />
+					</div>
+				</p:panel>			
+			</h:form>
+			
+  </ui:define>
+</ui:composition>
